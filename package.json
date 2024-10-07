@@ -1,0 +1,22 @@
+{
+  "name": "cam-detector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.665.0",
+    "aws-sdk": "^2.1691.0",
+    "axios": "^1.7.7",
+    "express": "^4.21.0",
+    "jimp": "0.16.1",
+    "multer": "^1.4.5-lts.1",
+    "node-webcam": "^0.8.2"
+  }
+}
