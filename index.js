@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import Jimp from 'jimp';
 import AWS from 'aws-sdk';
+import readline from 'readline';
 
 // Configure AWS SDK
 const s3 = new AWS.S3({
@@ -166,9 +167,24 @@ async function saveImageToFolder(imageName, folderPath) {
   }
 }
 
-// Start monitoring motion
-monitorMotion().catch(err => {
-  console.error("Error starting motion detection:", err);
+setTimeout(() => {
+  // Start monitoring motion after 1 minute
+  monitorMotion().catch(err => {
+    console.error("Error starting motion detection:", err);
+  });
+}, 60000);
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+console.log("Press Enter to stop the process...");
+// Listen for the 'line' event which is triggered when the user presses Enter
+rl.on('line', () => {
+    console.log("Stopping the process...");
+    rl.close(); // Close the readline interface
+    process.exit(0); // Exit the process with a success code
 });
 
 // Keep the Node.js process alive
